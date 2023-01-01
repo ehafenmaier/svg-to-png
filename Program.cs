@@ -12,39 +12,43 @@ class Program
         // Create path to files argument
         var pathArg = new Argument<string?>(
             name: "path",
-            description: "Path to SVG files");
-        
-        pathArg.HelpName = "PATH_TO_SVGS";
+            description: "Path to SVG files")
+        {
+            HelpName = "PATH_TO_SVGS"
+        };
 
         // Create PNG width and height options
         var widthOption = new Option<int?>(
             aliases: new[] { "-w", "--width" },
             description: "Width of PNG file.",
-            getDefaultValue: () => 2048);
-
-        widthOption.ArgumentHelpName = "PNG_WIDTH";
+            getDefaultValue: () => 2048)
+        {
+            ArgumentHelpName = "PNG_WIDTH"
+        };
 
         var heightOption = new Option<int?>(
             aliases: new[] { "-h", "--height" },
             description: "Height of PNG file.",
-            getDefaultValue: () => 2048);
-
-        heightOption.ArgumentHelpName = "PNG_HEIGHT";
+            getDefaultValue: () => 2048)
+        {
+            ArgumentHelpName = "PNG_HEIGHT"
+        };
 
         // Create output option
         var outputOption = new Option<string?>(
             aliases: new[] { "-o", "--output" },
-            description: "The output directory to save PNG files.");
+            description: "The output directory to save PNG files.")
+        {
+            ArgumentHelpName = "OUTPUT_DIR"
+        };
 
-        outputOption.ArgumentHelpName = "OUTPUT_DIR";
 
-        
         // Add arguments and options to root command
         rootCmd.AddArgument(pathArg);
         rootCmd.AddOption(widthOption);
         rootCmd.AddOption(heightOption);
         rootCmd.AddOption(outputOption);
-        
+
 
         return await rootCmd.InvokeAsync(args);
     }
